@@ -1,0 +1,30 @@
+﻿@model Lec1.Models.StudentCourses
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="StdId" />
+            <input type="hidden" asp-for="CrstId" />
+            <div class="form-group">
+                <label asp-for="Grade" class="control-label"></label>
+                <input asp-for="Grade" class="form-control" min="0" required/>
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index"  asp-route-id="@ViewBag.student.Id" class="btn btn-dark p-2">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

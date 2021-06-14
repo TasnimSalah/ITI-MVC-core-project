@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Lec1.Models.Course>
+
+@{
+    ViewData["Title"] = "RemoveCourse";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h2 class="text-center text-danger">Remove courses from  @ViewBag.Dept.Name</h2>
+
+
+<form asp-action="RemoveCourse" method="post">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th> Course Name </th>
+                <th> Operation </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => item.Name) </td>
+                    <td>@Html.CheckBox($@"crs.{item.Id}")</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Remove" class="btn btn-danger p-2" />
+        <a asp-action="Index" class="btn btn-dark p-2">Back to List</a>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

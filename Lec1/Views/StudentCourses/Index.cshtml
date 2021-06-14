@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Lec1.Models.StudentCourses>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h1 class="text-center text-bold text-capitalize">@ViewBag.std.Name</h1>
+
+
+<p>
+    <a asp-action="AddCourseGrade" asp-route-id="@ViewBag.std.Id" class="btn btn-primary p-2 m-3">Add Grade</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.students)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.students.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Courses.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-StdId="@item.StdId" asp-route-CrstId="@item.CrstId"  class="btn btn-info">Edit</a>
+                    <a asp-action="Delete" asp-route-StdId="@item.StdId" asp-route-CrstId="@item.CrstId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

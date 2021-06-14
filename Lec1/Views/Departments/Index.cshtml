@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Lec1.Models.Department>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<h1 class="text-capitalize text-danger">Department</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary p-2">Create New</a>
+</p>
+<table class="table text-center" >
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>Operation</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info p-2">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success p-2">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger p-2">Delete</a>
+                <a asp-action="AddCourse" asp-route-id="@item.Id" class="btn btn-info p-2">Add Course</a>
+                <a asp-action="RemoveCourse" asp-route-id="@item.Id" class="btn btn-danger p-2">Remove Course</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

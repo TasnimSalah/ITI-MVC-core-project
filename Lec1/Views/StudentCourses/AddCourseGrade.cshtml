@@ -1,0 +1,37 @@
+﻿@model Lec1.Models.StudentCourses
+
+@{
+    ViewData["Title"] = "AddCourseGrade";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<h2 class="text-center text-danger">AddCourse to  @ViewBag.std.Name</h2>
+
+        <form asp-action="AddCourseGrade" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" id="StdId" name="StdId" value="@ViewBag.std.Id">
+            </div>
+            <div class="form-group">
+                <label asp-for="CrstId" class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(a => a.CrstId, ViewBag.NewstudentCourse as SelectList, new { @class = "btn btn-info" });
+                </div>
+                @*<select asp-for="CrstId" class ="form-control" asp-items="ViewBag.CrstId"></select>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Grade" class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    <input asp-for="Grade" class="form-control" min="0" required/>
+                    <span asp-validation-for="Grade" class="text-danger"></span>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary p-2" />
+                <a asp-action="index" asp-controller="StudentCourses" asp-route-id="@ViewBag.std.Id" class="btn btn-dark p-2">Back to list</a>
+            </div>
+        </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,23 @@
+﻿@model Lec1.Models.Department
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div>
+
+    <div class="card text-center" style="width: 20rem;">
+        <div class="card-body">
+            <h1 class="text-bold text-capitalize text-danger"> @Html.DisplayFor(model => model.Name) </h1>
+        </div>
+    </div>
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info p-2">Edit</a> 
+    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger p-2">Delete</a> 
+    <a asp-action="Index" class="btn btn-dark p-2">Back to List</a>
+
+</p>
+
+
